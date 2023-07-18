@@ -6,7 +6,7 @@ Table of Contents
 [1. AWS Cloud - The Website](#awscloud) </br>
 [2. Quizz](#quizz) </br>
 [3. IAM policies](#iam) </br>
-[4. Quicksight dashboard](#bigdata) </br>
+[4. Big Data - Data Visualization With AWS QuickSight](#bigdata) </br>
 
 ---
 <div id='awscloud'/>
