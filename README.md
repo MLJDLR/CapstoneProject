@@ -15,6 +15,9 @@ Table of Contents
 <div id='awscloud'/>
   
 # 1. AWS Cloud - The Website
+
+![image](AWSCloudWebsite/Cloud_Architecture_Project.png) <br><br>
+
 1| First we created a VPC, with the the IPv4 to 10.0.0.0/24 : <br>
 ![image](AWSCloudWebsite/wb1.png) <br><br>
 
