@@ -1,7 +1,7 @@
 # AWS Cloud & Big Data Architectures Capstone Project
-Maxime LARROZE
-Wielfried Jordan FOKANA
-Thomas MIRAS GARCIA
+Maxime LARROZE <br>
+Wielfried Jordan FOKANA <br>
+Thomas MIRAS GARCIA <br>
 ---
 
 Table of Contents
