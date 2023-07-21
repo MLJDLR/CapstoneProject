@@ -1,6 +1,6 @@
 # AWS Cloud & Big Data Architectures Capstone Project
 Maxime LARROZE <br>
-Wielfried Jordan FOKANA <br>
+Wilfried Jordan FOKANA <br>
 Thomas MIRAS GARCIA <br> <br>
 ---
 
@@ -25,7 +25,7 @@ Table of Contents
 ![image](AWSCloudWebsite/wb11.png)<br><br>
 
 3| And we needed an internet gateway, to attach it to our VPC : <br>
-<br><br>
+![image](AWSCloudWebsite/wb20.png)<br><br>
 
 4| We updated the VPC route tables, by adding a new route (0.0.0.0/0) to the internet gateway from anywhere : <br>
 ![image](AWSCloudWebsite/wb3.png) <br><br>
