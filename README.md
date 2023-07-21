@@ -4,7 +4,7 @@
 Table of Contents
 
 [1. AWS Cloud - The Website](#awscloud) <br>
-[2. Quizz](#quizz) <br>
+[2. Quizz IAM & Network](#quizz) <br>
 [3. IAM policies](#iam) <br>
 [4. Big Data - Data Visualization With AWS QuickSight](#bigdata) <br>
 
@@ -12,31 +12,81 @@ Table of Contents
 <div id='awscloud'/>
   
 # 1. AWS Cloud - The Website
+1| First we created a VPC, with the the IPv4 to 10.0.0.0/24 : <br>
+![image](AWSCloudWebsite/wb1.png) <br><br>
 
-![image](AWSCloudWebsite/wb1.png) 
-![image](AWSCloudWebsite/wb2.png) 
-![image](AWSCloudWebsite/wb3.png)
-![image](AWSCloudWebsite/wb4.png)
-![image](AWSCloudWebsite/wb5.png)
-![image](AWSCloudWebsite/wb6.png)
-![image](AWSCloudWebsite/wb7.png)
-![image](AWSCloudWebsite/wb8.png)
-![image](AWSCloudWebsite/wb9.png)
-![image](AWSCloudWebsite/wb10.png)
-![image](AWSCloudWebsite/wb11.png)
-![image](AWSCloudWebsite/wb12.png)
-![image](AWSCloudWebsite/wb13.png)
-![image](AWSCloudWebsite/wb14.png)
-![image](AWSCloudWebsite/wb15.png)
-![image](AWSCloudWebsite/wb16.png)
-![image](AWSCloudWebsite/wb17.png)
-![image](AWSCloudWebsite/wb18.png)
-![image](AWSCloudWebsite/wb19.png)
+2| Then we added a public subnet to our VPC, with the IPv4 to 10.0.0.0/25 (with settings enabling auto-assign public IPv4 address) : <br>
+![image](AWSCloudWebsite/wb11.png)<br><br>
+
+3| And we needed an internet gateway, to attach it to our VPC : <br>
 <br><br>
 
+4| We updated the VPC route tables, by adding a new route (0.0.0.0/0) to the internet gateway from anywhere : <br>
+![image](AWSCloudWebsite/wb3.png) <br><br>
+
+5| Finally, we created an endpoint in the VPC for it connect to the EC2 instance remotely : <br>
+![image](AWSCloudWebsite/wb5.png) <br><br>
+
+6| Now we created an instance based on the AMI **Cloud9AmazonLinux2-2023-06-22T17-21.** : <br>
+![image](AWSCloudWebsite/wb2.png) <br><br>
+
+7| We did the required installation that was given in the subject, by connecting to the instance in the terminal : <br>
+<pre>
+  sudo yum -y update
+  sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+  sudo yum install -y httpd mariadb-server
+  sudo chkconfig httpd on
+  sudo service httpd start
+  cd /home/ec2-user/environment
+  wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/CUR-TF-200-ACACAD-2/21-course-project/s3/Countrydatadump.sql
+  ln -s /var/www/ /home/ec2-user/environment/
+  sudo chown -R ec2-user:ec2-user Countrydatadump.sql
+  cd /var/www/html
+  wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/CUR-TF-200-ACACAD-2/21-course-project/s3/Example.zip
+  sudo unzip Example.zip -d /var/www/html/
+  sudo chown -R ec2-user:ec2-user /var/www/html
+</pre>
+![image](AWSCloudWebsite/wb8.png)
+![image](AWSCloudWebsite/wb7.png)<br><br>
+
+8| We also added the required inbound rules in the security group (Launch-Wizard-5) of our instance (HTTP with port 80) : <br>
+![image](AWSCloudWebsite/wb6.png) <br><br>
+
+9| Finally it worked the website was accessible on the public IP provided by our instance **http:// 13.51.79.121** (step 6, instance details)
+![image](AWSCloudWebsite/wb9.png) <br><br>
+
+10| Now we want to query on the website with the content of a database, as such we created one with MariaDB on RDS : <br>
+![image](AWSCloudWebsite/wb10.png) <br>
+No need to create a private subnet, we did it before but we saw it was useless afterwards. <br>
+It is done automatically by RDS but for the public one we used the one we created earlier (**ID 01a5b486b3e232222**) <br><br>
+
+11| As our VPC & EC2 instance are linked to the database, <br>
+we can just connect to MariaDB on the terminal to upload the content of **Countrydatadump.sql** :
+![image](AWSCloudWebsite/wb12.png)
+![image](AWSCloudWebsite/wb13.png) <br><br>
+
+12| We created parameters in the parameter store to store the database name, endpoint, username and password : <br>
+![image](AWSCloudWebsite/wb17.png) <br><br>
+
+13| Now our EC2 instance needs to read our RDS database parameters for it to access its content <br>
+As such we first created a policy to allow the EC2 instance to connect to the database :<br>
+![image](AWSCloudWebsite/wb14.png) <br><br>
+
+14| For the EC2 instance to use this policy we created a role: <br>
+![image](AWSCloudWebsite/wb15.png) <br><br>
+
+15| We attached this role to our EC2 instance : <br>
+![image](AWSCloudWebsite/wb16.png) <br><br>
+
+16| And finally we can go back to our website and try the queries and see that it works ! <br>
+![image](AWSCloudWebsite/wb18.png)
+![image](AWSCloudWebsite/wb19.png) 
+<br><br>
+
+---
 <div id='quizz'/>
   
-# 2. Quizz
+# 2. Quizz IAM & Network
 
 ## IAM quizz
 1. Option 3 
@@ -54,9 +104,10 @@ Table of Contents
 4. Option 3 
 <br><br>
 
+---
 <div id='iam'/>
   
-# 3. IAM
+# 3. IAM policies
 
 **Question 1: What actions are allowed for EC2 instances and S3 objects based on this policy? What specific resources are included?** <br>
 Based on the provided policy, the following actions are allowed :<br>
@@ -140,7 +191,7 @@ This means that the ec2:* actions, which encompass all EC2 actions, will be allo
 The provided policy allows all actions on all EC2 instances without imposing any restrictions on terminating instances. Therefore, you would be able to terminate an m3.xlarge instance if it exists in the account.
 <br><br>
 
-
+---
 <div id='bigdata'/>
   
 # 4. Big Data - Data Visualization With AWS QuickSight
