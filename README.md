@@ -209,7 +209,7 @@ Sum of Revenue by Admit Date <br>
 ![image](BigDataQuickSight/qs1.png) <br><br>
 
 Sum of Profit by Hospital <br>
-![image](BigDataQuickSight/qs2.png)
+![image](BigDataQuickSight/qs2.png) <br><br>
 
 Sum of Cost per Category and Admit Date <br>
 ![image](BigDataQuickSight/qs3.png)
@@ -219,20 +219,20 @@ Sum of Cost per Category and Admit Date <br>
 
 Sum of Discount and Sum of Profit by Admit Date <br>
 ![image](BigDataQuickSight/qs7.png)
-![image](BigDataQuickSight/qs8.png) <br><br>
+![image](BigDataQuickSight/qs8.png) 
+![image](BigDataQuickSight/qs9.png) <br><br>
 
 Sum of Revenue by Admit Date <br>
-![image](BigDataQuickSight/qs9.png)
-![image](BigDataQuickSight/qs10.png) <br><br>
+![image](BigDataQuickSight/qs10.png) 
+![image](BigDataQuickSight/qs11.png) <br><br>
 
 Sum of Profit by Admit Date <br>
-![image](BigDataQuickSight/qs11.png)
-![image](BigDataQuickSight/qs12.png) <br><br>
+![image](BigDataQuickSight/qs12.png) 
+![image](BigDataQuickSight/qs13.png) <br><br>
 
 Period over Period <br>
-![image](BigDataQuickSight/qs13.png) 
-![image](BigDataQuickSight/qs14.png) <br><br>
+![image](BigDataQuickSight/qs14.png) 
+![image](BigDataQuickSight/qs15.png) <br><br>
 
-Top 3 Category for total Profit are : <br>
-![image](BigDataQuickSight/qs15.png)
+Top 3 Category for total Profit <br>
 ![image](BigDataQuickSight/qs16.png) <br><br>
